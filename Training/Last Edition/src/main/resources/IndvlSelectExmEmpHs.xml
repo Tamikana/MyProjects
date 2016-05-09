@@ -1,0 +1,29 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="IndvlSelectExmEmpHs">
+
+	<resultMap id="result" type = "Exm">
+		<result property="info_id" />
+	</resultMap>
+
+	<select id="getByCountExmEmpHs" parameterType="int" resultMap="result">
+		SELECT exms.info_id, count(exms.info_id) FROM exms
+		where exms.info_id IN (
+		SELECT emphss.info_id FROM emphss
+		group by emphss.info_id having count(*)>1)
+        group by exms.info_id having count(*)>1;
+	</select>
+	
+	<select id="exmCount" resultType="int">
+		SELECT count(*) FROM exms
+        group by exms.info_id having count(*)>1;
+	</select>
+	
+	<select id="empHsCount" resultType="int">
+		SELECT count(*) FROM emphss
+		group by emphss.info_id having count(*)>1;
+	</select>
+
+</mapper>

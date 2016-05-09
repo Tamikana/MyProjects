@@ -1,0 +1,155 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Indvl">
+
+	<resultMap id="result" type="Info">
+		<result property="info_id" column="id" />
+		<result property="lastNm" />
+		<result property="firstNm" />
+		<result property="midNm" />
+		<result property="indvlPK" />
+		<result property="actvAGReg" />
+		<result property="link" />
+	</resultMap>
+
+	<resultMap id="result2" type="OthrNm">
+		<result property="info_id" />
+		<result property="lastNm" />
+		<result property="firstNm" />
+	</resultMap>
+
+	<resultMap id="result1" type="OthrBus">
+		<result property="info_id" />
+		<result property="desc" column="description" />
+	</resultMap>
+
+	<resultMap id="result3" type="CrntEmp">
+		<result property="info_id" />
+		<result property="crntemp_id" column="id" />
+		<result property="orgNm" />
+		<result property="orgPK" />
+		<result property="str1" />
+		<result property="str2" />
+		<result property="city" />
+		<result property="state" />
+		<result property="cntry" />
+		<result property="postlCd" />
+	</resultMap>
+
+	<resultMap id="result4" type="BrnchOfLoc">
+		<result property="info_id" />
+		<result property="str1" />
+		<result property="city" />
+		<result property="state" />
+		<result property="cntry" />
+		<result property="postlCd" />
+	</resultMap>
+
+	<resultMap id="result5" type="CrntRgstn">
+		<result property="info_id" />
+		<result property="regAuth" />
+		<result property="regCat" />
+		<result property="st" />
+		<result property="stDt" />
+	</resultMap>
+
+	<resultMap id="result6" type="DRP">
+		<result property="info_id" />
+		<result property="hasRegAction" />
+		<result property="hasCriminal" />
+		<result property="hasBankrupt" />
+		<result property="hasCivilJ" column="hasCivilJudc" />
+		<result property="hasBond" />
+		<result property="hasJudgment" />
+		<result property="hasInvstgn" />
+		<result property="hasCustComp" />
+		<result property="hasTermination" />
+	</resultMap>
+
+	<resultMap id="result7" type="Exm">
+		<result property="info_id" />
+		<result property="exmNm" />
+		<result property="exmCd" />
+		<result property="exmDt" />
+	</resultMap>
+
+<resultMap id="result8" type="EmpHs">
+		<result property="info_id" />
+		<result property="fromDt" />
+		<result property="orgNm" />
+		<result property="city" />
+		<result property="state" />
+	</resultMap>
+
+<resultMap id="result9" type="PrevRgstn">
+		<result property="info_id" />
+		<result property="orgNm" />
+		<result property="orgPK" />
+		<result property="regBeginDt" />
+		<result property="regEndDt" />
+	</resultMap>
+	
+	<resultMap id="result10" type="Dsgntn">
+		<result property="info_id" />
+		<result property="dsgntnNm" />
+	</resultMap>
+
+	<select id="getById" parameterType="int" resultMap="result">
+		SELECT * FROM
+		info WHERE ID = #{id};
+	</select>
+
+	<select id="crntEmpCount" resultType="int">
+		SELECT COUNT(*) FROM
+		crntemps WHERE info_id = #{id};
+	</select>
+
+	<select id="getByIdOthrBus" parameterType="int" resultMap="result1">
+		SELECT * FROM othrbuss WHERE info_id = #{id};
+	</select>
+
+	<select id="getByIdOthrNm" parameterType="int" resultMap="result2">
+		SELECT
+		* FROM othrnms WHERE info_id = #{id};
+	</select>
+
+	<select id="getByIdCrntEmps" parameterType="int" resultMap="result3">
+		SELECT * FROM crntemps WHERE info_id = #{id};
+	</select>
+
+	<select id="getByIdBranchOfLoc" parameterType="int" resultMap="result4">
+		SELECT * FROM brnchoflocs WHERE crntemps_id = #{id};
+	</select>
+
+	<select id="getByIdCrntRgstn" parameterType="int" resultMap="result5">
+		SELECT * FROM crntrgstns WHERE crntemps_id = #{id};
+	</select>
+
+	<select id="getByIdDRP" parameterType="int" resultMap="result6">
+		SELECT *
+		FROM drps WHERE info_id = #{id};
+	</select>
+
+	<select id="getByIdExm" parameterType="int" resultMap="result7">
+		SELECT *
+		FROM exms WHERE info_id = #{id};
+	</select>
+
+	<select id="getByIdEmpHss" parameterType="int" resultMap="result8">
+		SELECT
+		* FROM emphss WHERE info_id = #{id};
+	</select>
+	
+	<select id="getByIdPrevRgstn" parameterType="int" resultMap="result9">
+		SELECT
+		* FROM prevrgstns WHERE info_id = #{id};
+	</select>
+	
+	<select id="getByIdDsgntn" parameterType="int" resultMap="result10">
+		SELECT
+		* FROM dsgntns WHERE info_id = #{id};
+	</select>
+
+</mapper>

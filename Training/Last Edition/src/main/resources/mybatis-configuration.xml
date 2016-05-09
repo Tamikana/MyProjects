@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration 
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="config.properties"> 
+    </properties> 
+
+	<typeAliases>
+		<typeAlias alias="Info" type="ru.myMB.indvls.Info" />
+		<typeAlias alias="CrntEmp" type="ru.myMB.indvls.CrntEmp" />
+		<typeAlias alias="BrnchOfLoc" type="ru.myMB.indvls.BrnchOfLoc" />
+		<typeAlias alias="CrntRgstn" type="ru.myMB.indvls.CrntRgstn" />
+		<typeAlias alias="OthrNm" type="ru.myMB.indvls.OthrNm" />
+		<typeAlias alias="Exm" type="ru.myMB.indvls.Exm" />
+		<typeAlias alias="Dsgntn" type="ru.myMB.indvls.Dsgntn" />
+		<typeAlias alias="PrevRgstn" type="ru.myMB.indvls.PrevRgstn" />
+		<typeAlias alias="EmpHs" type="ru.myMB.indvls.EmpHs" />
+		<typeAlias alias="OthrBus" type="ru.myMB.indvls.OthrBus" />
+		<typeAlias alias="DRP" type="ru.myMB.indvls.DRP" />
+		<typeAlias alias="Indvl" type="ru.myMB.indvls.Indvl" />
+	</typeAliases>
+
+	<environments default="induviduals">
+		<environment id="induviduals">
+			<transactionManager type="JDBC" />
+
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${user}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="info.xml" />
+		<mapper resource="CrntEmp.xml" />
+		<mapper resource="BrnchOfLoc.xml" />
+		<mapper resource="CrntRgstn.xml" />
+		<mapper resource="OthrNm.xml" />
+		<mapper resource="Exm.xml" />
+		<mapper resource="Dsgntn.xml" />
+		<mapper resource="PrevRgstn.xml" />
+		<mapper resource="EmpHs.xml" />
+		<mapper resource="OthrBus.xml" />
+		<mapper resource="DRP.xml" />
+		<mapper resource="Indvl.xml" />
+		<mapper resource="IndvlSelectExmEmpHs.xml" />
+	</mappers>
+
+</configuration>
